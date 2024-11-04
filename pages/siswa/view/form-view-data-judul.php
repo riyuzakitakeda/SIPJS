@@ -1,0 +1,72 @@
+<!-- begin page-header -->
+<h1 class="page-header">Data <small>Judul Skripsi</small></h1>
+<!-- end page-header -->
+<div class="profile-container">
+	<!-- begin profile-section -->
+	<div class="profile-section">
+		<div class="panel-body">
+			<form action="index.php?page=form-view-data-judul" class="form-horizontal" method="POST" enctype="multipart/form-data" >
+				<div class="form-group">
+					<label class="col-md-3 control-label">Pilih Kategori</label>
+					<div class="col-md-4">
+						<?php
+							$selKat = mysqli_query($gathuk, "SELECT * FROM tb_kategori ORDER BY nama");        
+							echo '<select name="kategori" class="default-select2 form-control" style="width:100%" required>';    
+							echo '<option value="">...</option>';    
+								while ($rowkat = mysqli_fetch_array($selKat)) {    
+								echo '<option value="'.$rowkat['nama'].'">'.$rowkat['nama'].'</option>';    
+								}    
+							echo '</select>';
+						?>
+					</div>
+					<div class="col-md-3">
+						<button type="submit" name="report" value="report" class="btn btn-danger"><i class="fa fa-search"></i>&nbsp;View</button> &nbsp;
+						<a type="button" href="index.php?page=form-view-data-judul" class="btn btn-success"><i class="fa fa-refresh"></i>&nbsp;Refresh</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- end profile-section -->
+	<?php
+	if (isset($_POST['report'])) {
+		$kategori	=$_POST['kategori'];
+		echo'
+		<hr />
+		<div class="row">
+			<div class="panel-body">
+				<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+					<thead>
+						<tr>
+							<th width="4%">No</th>
+							<th>Angkatan</th>
+							<th>Kategori</th>
+							<th>Topik</th>
+							<th>Judul</th>
+						</tr>
+					</thead>
+					<tbody>';
+							$no=0;
+							$query	=mysqli_query($gathuk, "SELECT * FROM tb_skripsi WHERE kategori='$kategori' ORDER BY angkatan DESC");
+							while($data	=mysqli_fetch_array($query)){
+							$no++;
+						echo'<tr>
+							<td>'.$no.'</td>
+							<td>'.$data['angkatan'].'</td>
+							<td>'.$data['kategori'].'</td>
+							<td>'.$data['topik'].'</td>
+							<td>'.$data['judul'].'</td>
+						</tr>';
+							}
+					echo'</tbody>
+				</table>
+			</div>
+		</div>';
+	}
+	?>
+</div>
+
+<script> // 500 = 0,5 s
+	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
+	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
+</script>
