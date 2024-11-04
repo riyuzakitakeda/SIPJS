@@ -55,6 +55,7 @@ if (isset($_GET['id'])) {
             margin: 0 auto;
             width: 85%;
             padding: 15px;
+            font-family: "Times New Roman", Times, serif;
         }
         .header, .footer {
             text-align: center;
@@ -65,14 +66,14 @@ if (isset($_GET['id'])) {
         }
         .signature {
             text-align: right;
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .info-table {
             width: 100%;
             margin-top: 10px;
         }
         .info-table td {
-            padding: 5px;
+            padding: 0px;
             vertical-align: top;
         }
         @media print {
@@ -99,9 +100,11 @@ if (isset($_GET['id'])) {
                     <p style="margin: 0; font-size: 15px;">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET, DAN TEKNOLOGI</p>
                     <p style="margin: 0; font-size: 15px;">UNIVERSITAS NEGERI MAKASSAR (UNM)</p>
                     <p style="margin: 0; font-weight: bold;">FAKULTAS EKONOMI</p>
-                    <p style="margin: 0; font-size: small;">Alamat: Jalan Raya Pendidikan Makassar, Kode Pos - 90222</p>
-                    <p style="margin: 0; font-size: small;">Telepon: (0411) 889464 - 881244 Fax. (0411) 889464</p>
-                    <p style="margin: 0; font-size: small;">Laman: www.fe.unm.ac.id, Surel: tatausaha.fe@unm.ac.id</p>
+                    <div style="margin: 0; font-size: 10px;">
+                    Alamat: Jalan Raya Pendidikan Makassar, Kode Pos - 90222<br>
+                    Telepon: (0411) 889464 - 881244 Fax. (0411) 889464<br>
+                    Laman: www.fe.unm.ac.id, Surel: tatausaha.fe@unm.ac.id<br>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,21 +114,26 @@ if (isset($_GET['id'])) {
         <h4 style="text-align: center;">PERMOHONAN PENERBITAN SK PEMBIMBING SKRIPSI</h4>
 
         <p>Kepada Yth.<br>
-        Dekan Fakultas Ekonomi UNM<br>
+        <b>Dekan Fakultas Ekonomi UNM</b><br>
         di<br>
         Makassar</p>
 
-        <p>Dengan Hormat,</p>
-
-        <p>Yang bertanda tangan di bawah ini:</p>
+        Dengan Hormat,<br>
+        Yang bertanda tangan di bawah ini:<br>
 
         <table class="info-table">
-            <?php foreach ($dosen_names as $index => $nama_dosen) { ?>
-                <tr>
-                    <td><strong>Dosen Pembimbing <?php echo $index + 1; ?></strong></td>
-                    <td>: <?php echo htmlspecialchars($nama_dosen); ?></td>
-                </tr>
-            <?php } ?>
+            <tr>
+                <td><strong>Nama</strong></td>
+                <td>: M. Ridwan Tikolllah, S.Pd., M.SA.</td>
+            </tr>
+            <tr>
+                <td><strong>NIP</strong></td>
+                <td>: 197510272000031001</td>
+            </tr>
+            <tr>
+                <td><strong>Jurusan</strong></td>
+                <td>: Ketua Jurusan Ilmu Akuntansi</td>
+            </tr>
         </table>
 
         <p>Menerangkan bahwa mahasiswa atas nama:</p>
@@ -136,44 +144,25 @@ if (isset($_GET['id'])) {
                 <td>: <?php echo htmlspecialchars($tsis['nama']); ?></td>
             </tr>
             <tr>
-                <td><strong>NPM</strong></td>
+                <td><strong>NIM</strong></td>
                 <td>: <?php echo htmlspecialchars($tsis['npm']); ?></td>
             </tr>
             <tr>
-                <td><strong>Jurusan</strong></td>
-                <td>: <?php echo htmlspecialchars($tsis['jurusan']); ?></td>
-            </tr>
-        </table>
-
-        <p>Telah mengusulkan judul Skripsi dengan rincian sebagai berikut:</p>
-
-        <table class="info-table">
-            <tr>
-                <td><strong>Judul Skripsi</strong></td>
-                <td>: <?php echo htmlspecialchars($data['judul']); ?></td>
-            </tr>
-            <tr>
-                <td><strong>Kategori</strong></td>
-                <td>: <?php echo htmlspecialchars($data['kategori']); ?></td>
-            </tr>
-            <tr>
-                <td><strong>Topik</strong></td>
+                <td><strong>Judul</strong></td>
                 <td>: <?php echo htmlspecialchars($data['topik']); ?></td>
             </tr>
-            <tr>
-                <td><strong>Angkatan</strong></td>
-                <td>: <?php echo htmlspecialchars($data['angkatan']); ?></td>
-            </tr>
         </table>
 
-        <p>Untuk itu kami memohon kepada Bapak untuk memberikan/menerbitkan SK Pembimbing Skripsi sesuai dengan Usulan Judul Skripsi (terlampir) kepada mahasiswa yang bersangkutan. Atas perhatiannya kami ucapkan terima kasih.</p>
+        <p>Telah mengusulkan judul Skripsi dan telah disetujui oleh dosen Penasehat Akademik. Untuk itu kami memohon kepada Bapak untuk memberikan/menerbitkan SK Pembimbing Skripsi sesuai dengan Usulan Judul Skripsi (terlampir) kepada mahasiswa yang bersangkutan. Atas perhatiannya kami ucapkan terima kasih.</p>
     </div>
 
     <div class="signature">
-        <p>Makassar, <?php echo date('d F Y'); ?></p>
+        Makassar, <?php echo date('d F Y'); ?><br>
+        Ketua Jurusan Ilmu Akuntansi<br>
         <?php foreach ($dosen_names as $nama_dosen) { ?>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode('http://localhost/SIPJS/pages/prodi/report/verify.php?id=' . $id_skripsi); ?>" alt="QR Code">
-            <p><?php echo htmlspecialchars($nama_dosen); ?></p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=<?php echo urlencode('https://sipjs.online//pages/prodi/report/verify.php?id=' . $id_skripsi); ?>" alt="QR Code"><br>
+            M. Ridwan Tikolllah, S.Pd., M.SA.<br>
+            197510272000031001
         <?php } ?>
     </div>
 
